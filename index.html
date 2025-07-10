@@ -1,0 +1,63 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VibeCast</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400..700&display=swap" rel="stylesheet">
+    <link href="/src/output.css" rel="stylesheet">
+    <script type="module" src="src/js/main.js"></script>
+
+</head>
+
+<body class="bg-primary">
+    <header class="flex p-5 w-full justify-center text-white">
+        <h1 class="font-semibold">VibeCast</h1>
+    </header>
+    <main>
+
+        <section class="current-weather-screen container flex flex-col gap-6">
+            <current-conditions>
+                <div class="card">
+                    <div class="card-header flex flex-row justify-between items-center">
+                        <h2><span class="cc-location">Location -</span> <span class="cc--temp">Temp</span></h2> <span class="flex gap-1.5 cc--time">Time: <i class="cc--time-icon" data-lucide="moon"></i></span>
+                    </div>
+                    <div class="card-body flex flex-row">
+                        <div class="flex flex-col">
+                            <p class="text-secondary cc--weather">Weather:</p>
+                            <p class="text-secondary cc--feels-like">Feels like: </p>
+                            <p class="text-secondary cc--high-low">High: Low:</p>
+                        </div>
+                        <div class="flex flex-col ml-auto">
+                            <p class="text-secondary cc--wind">Wind:</p>
+                            <p class="text-secondary cc--air-pressure">Air Pressure: </p>
+                            <p class="text-secondary cc--humidity">Humidity: </p>
+
+                        </div>
+                    </div>
+                </div>
+            </current-conditions>
+
+            <theme-box>
+                <div class="card">
+
+
+                </div>
+            </theme-box>
+
+        </section>
+
+    </main>
+    <footer class="flex flex-nowrap flex-row fixed bottom-0 p-5 w-full justify-evenly bg-dark text-secondary">
+        <a class="active"><i data-lucide="sun"></i> Current Weather</a>
+        <a><i data-lucide="calendar-range"></i>Daily Forecast</a>
+        <a><i data-lucide="search"></i>Search</a>
+    </footer>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+
+</html>
