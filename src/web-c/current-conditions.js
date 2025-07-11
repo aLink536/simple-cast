@@ -26,11 +26,16 @@ class CurrentConditions extends HTMLElement {
 
         this.querySelector('.cc--time').childNodes[0].textContent = `${formattedTime} `;
 
-       
+
 
         const iconName = data.isDaytime ? 'sun' : 'moon';
         const iconEl = this.querySelector('.cc--time-icon');
-        updateLucideIcon(iconEl, iconName);
+        if (iconEl) {
+          iconEl.setAttribute('data-lucide', iconName);
+          iconEl.innerHTML = ''; // ensure it’s empty
+          lucide.createIcons({ icons: lucide.icons, nameAttr: 'data-lucide' });
+        }
+
 
 
         // ✅ Use resolved city name
