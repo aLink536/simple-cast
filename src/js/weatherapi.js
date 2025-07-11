@@ -78,5 +78,52 @@ export function getForecast(lat, lng) {
     });
 }
 
+
+// Geocode user input (city, postcode, etc.)
+export async function searchLocation(query) {
+  try {
+    const res = await fetch(
+      `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1&addressdetails=1`,
+      {
+        headers: {
+          'User-Agent': 'VibeCastWeatherApp/1.0 (you@yourapp.com)'
+        }
+      }
+    );
+
+    const data = await res.json();
+    if (!data.length) throw new Error('No results found.');
+
+    const result = data[0];
+    const address = result.address;
+
+    const name =
+      address.city ||
+      address.town ||
+      address.village ||
+      address.hamlet ||
+      address.county ||
+      address.state ||
+      address.country ||
+      query;
+
+    return {
+      lat: parseFloat(result.lat),
+      lng: parseFloat(result.lon),
+      name
+    };
+  } catch (err) {
+    console.warn('Location search failed:', err);
+    return null;
+  }
+}
+
+
+export function setDefaultLocation(lat, lng, name = 'Unknown') {
+  cachedDefaultLocation = { lat, lng, name };
+}
+
+
+
 console.log('Weather API module loaded');
 

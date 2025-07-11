@@ -20,7 +20,8 @@
             <current-conditions>
                 <div class="card">
                     <div class="card-header flex flex-row justify-between items-center">
-                        <h2><span class="cc-location">Location -</span> <span class="cc--temp">Temp</span></h2> <span class="flex gap-1.5 cc--time">Time: <i class="cc--time-icon" data-lucide="moon"></i></span>
+                        <h2><span class="cc-location">Location -</span> <span class="cc--temp">Temp</span></h2> <span
+                            class="flex gap-1.5 cc--time">Time: <i class="cc--time-icon" data-lucide="moon"></i></span>
                     </div>
                     <div class="card-body flex flex-row">
                         <div class="flex flex-col">
@@ -41,17 +42,36 @@
             <theme-box>
                 <div class="card">
 
-
                 </div>
             </theme-box>
 
         </section>
 
     </main>
+
+    <!-- Popups -->
+    <pop-up data-popup="search" class="items-center justify-center text-white">
+        <div class="card relative w-11/12 max-w-md">
+            <button onclick="closePopup('search')" class="absolute top-4 right-4 text-secondary">
+                <i data-lucide="x"></i>
+            </button>
+            <h2 class="text-secondary font-semibold mb-4">Search</h2>
+            <input type="text" autofocus
+                class="w-full px-4 py-2 rounded-md bg-primary text-white border border-secondary placeholder-secondary focus:outline-none focus:ring-2 focus:ring-secondary"
+                placeholder="Enter location..." />
+            <button data-action="search-location"
+                class="mt-4 w-full bg-secondary text-primary font-semibold px-4 py-2 rounded-md hover:brightness-110 transition">
+                Search
+            </button>
+
+        </div>
+    </pop-up>
+    <!-- End Popups -->
+
     <footer class="flex flex-nowrap flex-row fixed bottom-0 p-5 w-full justify-evenly bg-dark text-secondary">
         <a class="active"><i data-lucide="sun"></i> Current Weather</a>
         <a><i data-lucide="calendar-range"></i>Daily Forecast</a>
-        <a><i data-lucide="search"></i>Search</a>
+        <a onclick="openPopup('search')"><i data-lucide="search"></i>Search</a>
     </footer>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>

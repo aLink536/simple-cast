@@ -1,0 +1,18 @@
+<pop-up data-popup="search" class="items-center justify-center bg-primary bg-opacity-80 text-white">
+  <div class="card relative w-11/12 max-w-md">
+    <button onclick="document.querySelector('[data-popup=search]').close()" class="absolute top-4 right-4 text-secondary">
+      <i data-lucide="x"></i>
+    </button>
+    <h2 class="text-secondary font-semibold mb-4">Search for a location</h2>
+    <input
+      type="text"
+      class="w-full px-4 py-2 rounded-md bg-primary text-white border border-secondary placeholder-secondary focus:outline-none focus:ring-2 focus:ring-secondary"
+      placeholder="Enter city or postcode..."
+    />
+    <button
+      class="mt-4 w-full bg-secondary text-primary font-semibold px-4 py-2 rounded-md hover:brightness-110 transition"
+    >
+      Search
+    </button>
+  </div>
+</pop-up>

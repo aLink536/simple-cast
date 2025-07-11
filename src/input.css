@@ -81,6 +81,8 @@ h6 {
 .container{
   max-width: 1600px;
   padding: 5%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
@@ -93,4 +95,9 @@ footer a {
     background-color: var(--color-accent);
     color: white;
       @apply p-5 rounded-2xl;
+}
+
+pop-up{
+    background-color: #0f1c2495;
+    backdrop-filter: blur(5px);
 }

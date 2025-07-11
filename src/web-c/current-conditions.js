@@ -34,7 +34,7 @@ class CurrentConditions extends HTMLElement {
 
 
         // ✅ Use resolved city name
-        this.querySelector('.cc-location').textContent = `${name} -`;
+        this.querySelector('.cc-location').textContent = `${name}: `;
       })
       .catch(err => {
         console.error('Failed to load weather data:', err);
