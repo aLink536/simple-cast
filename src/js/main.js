@@ -47,7 +47,8 @@ document.addEventListener('click', async (e) => {
     }
 
     // Set new default location for global use
-    setDefaultLocation(result.lat, result.lng, result.name);
+    setDefaultLocation(result.lat, result.lng, result.name, result.country);
+
 
     // Re-trigger the component to fetch new data
     const cc = document.querySelector('current-conditions');

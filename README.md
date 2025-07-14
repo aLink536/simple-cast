@@ -1,6 +1,6 @@
 # 🌤️ VibeCast
 
-**VibeCast** is a simple, modular weather app built with modern web technologies — designed to provide live weather conditions with a chill UI, animated visuals, and ambient vibes.  
+**VibeCast** is a simple, modular weather app built with modern web technologies — designed to provide live weather conditions
 
 This is a learning project for exploring:
 - 📦 Web Components
@@ -13,12 +13,11 @@ This is a learning project for exploring:
 
 ## 🚀 Features
 
-- ✅ Current weather for a default location (Swansea / dynamic fallback)
-- ✅ Day/night icon switching with [Lucide](https://lucide.dev/)
+- ✅ Current weather for a default location
+- ✅ Day/night icon switching with 
 - ✅ Clean UI with Tailwind utility classes
 - ✅ Component-based architecture using native Web Components
 - ✅ Dynamic reverse geolocation (city/state fallback)
-- 🌤️ Background theme/music plans (in progress)
 
 ---
 
@@ -29,6 +28,7 @@ This is a learning project for exploring:
 - Google Maps Weather API
 - OpenStreetMap (Nominatim API)
 - Lucide Icons
+- https://api.windy.com/webcams/docs 
 
 
 

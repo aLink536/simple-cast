@@ -95,6 +95,11 @@ footer a {
     background-color: var(--color-accent);
     color: white;
       @apply p-5 rounded-2xl;
+      iframe{
+        height: 100%;
+        width: 100%;
+        aspect-ratio: 16/9;
+      }
 }
 
 pop-up{
