@@ -1,6 +1,6 @@
-# 🌤️ VibeCast
+# 🌤️ Simple Cast
 
-**VibeCast** is a simple, modular weather app built with modern web technologies — designed to provide live weather conditions
+**Simple Cast** is a simple, modular weather app built with modern web technologies — designed to provide live weather conditions
 
 This is a learning project for exploring:
 - 📦 Web Components
