@@ -100,6 +100,16 @@ export function getForecast(lat, lng) {
   });
 }
 
+export function getHourlyForecast(lat, lng) {
+  return fetchWeather('forecast/hours:lookup', {
+    'location.latitude': lat,
+    'location.longitude': lng,
+    'hours': 6
+  });
+}
+
+
+
 export async function searchLocation(query) {
   try {
     const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1&addressdetails=1`;
