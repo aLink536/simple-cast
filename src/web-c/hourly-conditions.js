@@ -1,4 +1,5 @@
 import { getDefaultLocation, getHourlyForecast } from '../js/weatherapi.js';
+import { mapWeatherToLucideIcon } from '../js/main.js';
 
 class HourlyConditions extends HTMLElement {
   async connectedCallback() {
@@ -6,7 +7,7 @@ class HourlyConditions extends HTMLElement {
   }
 
   async updateForecast() {
-    const container = this.querySelector('div');
+    const container = this.querySelector('.forecast-row');
     if (!container) return;
 
     container.innerHTML = '';
@@ -14,34 +15,38 @@ class HourlyConditions extends HTMLElement {
     try {
       const { lat, lng } = await getDefaultLocation();
       const data = await getHourlyForecast(lat, lng);
-      const forecast = data.forecastHours.slice(0, 6); // or more if needed
+      const forecast = (data.forecastHours || []).slice(0, 24);
+
+      if (forecast.length === 0) throw new Error('No forecast data available.');
 
       forecast.forEach(hour => {
         const displayHour = `${String(hour.displayDateTime.hours).padStart(2, '0')}:00`;
         const temp = `${Math.round(hour.temperature.degrees)}°C`;
         const wind = `${hour.wind.speed.value} km/h`;
         const rain = `${hour.precipitation.probability.percent}%`;
-        const icon = `${hour.weatherCondition.iconBaseUri}?w=48&h=48`;
         const description = hour.weatherCondition.description.text;
+        const iconName = mapWeatherToLucideIcon(hour.weatherCondition.type, hour.isDaytime);
 
-        const card = document.createElement('div');
-        card.className = 'card shrink-0 snap-start w-[70vw] sm:w-[22vw] text-center text-white flex flex-col items-center gap-1 py-2';
+        const item = document.createElement('div');
+        item.className = 'min-w-[4.5rem] flex-shrink-0 text-center text-white flex flex-col items-center gap-1';
 
-
-        card.innerHTML = `
+        item.innerHTML = `
           <div class="text-xs">${displayHour}</div>
-          <img src="${icon}" alt="${description}" class="w-5 h-5" />
+          <i data-lucide="${iconName}" class="w-5 h-5"></i>
           <div class="text-sm font-semibold">${temp}</div>
           <div class="text-xs">💨 ${wind}</div>
           <div class="text-xs">🌧️ ${rain}</div>
         `;
 
-        container.appendChild(card);
+        container.appendChild(item);
       });
+
+      // Trigger Lucide to render new icons
+      lucide.createIcons({ icons: lucide.icons, nameAttr: 'data-lucide' });
 
     } catch (err) {
       console.error('Failed to load hourly forecast:', err);
-      container.innerHTML = '<p class="text-secondary">Hourly forecast unavailable.</p>';
+      container.innerHTML = '<p class="text-secondary text-sm">Hourly forecast unavailable.</p>';
     }
   }
 }

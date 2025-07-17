@@ -104,7 +104,7 @@ export function getHourlyForecast(lat, lng) {
   return fetchWeather('forecast/hours:lookup', {
     'location.latitude': lat,
     'location.longitude': lng,
-    'hours': 6
+    'hours': 24
   });
 }
 

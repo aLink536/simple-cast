@@ -215,9 +215,6 @@
   .mb-4 {
     margin-bottom: calc(var(--spacing) * 4);
   }
-  .mb-5 {
-    margin-bottom: calc(var(--spacing) * 5);
-  }
   .ml-auto {
     margin-left: auto;
   }
@@ -230,35 +227,26 @@
   .h-48 {
     height: calc(var(--spacing) * 48);
   }
-  .w-1\/4 {
-    width: calc(1/4 * 100%);
-  }
   .w-5 {
     width: calc(var(--spacing) * 5);
   }
   .w-11\/12 {
     width: calc(11/12 * 100%);
   }
-  .w-28 {
-    width: calc(var(--spacing) * 28);
-  }
-  .w-50 {
-    width: calc(var(--spacing) * 50);
-  }
-  .w-\[70vw\] {
-    width: 70vw;
-  }
   .w-full {
     width: 100%;
+  }
+  .w-max {
+    width: max-content;
   }
   .max-w-md {
     max-width: var(--container-md);
   }
-  .shrink-0 {
-    flex-shrink: 0;
+  .min-w-\[4\.5rem\] {
+    min-width: 4.5rem;
   }
-  .snap-start {
-    scroll-snap-align: start;
+  .flex-shrink-0 {
+    flex-shrink: 0;
   }
   .flex-col {
     flex-direction: column;
@@ -309,14 +297,17 @@
   .p-5 {
     padding: calc(var(--spacing) * 5);
   }
+  .px-2 {
+    padding-inline: calc(var(--spacing) * 2);
+  }
   .px-4 {
     padding-inline: calc(var(--spacing) * 4);
   }
   .py-2 {
     padding-block: calc(var(--spacing) * 2);
   }
-  .pb-5 {
-    padding-bottom: calc(var(--spacing) * 5);
+  .py-3 {
+    padding-block: calc(var(--spacing) * 3);
   }
   .text-center {
     text-align: center;
@@ -359,11 +350,6 @@
     &:focus {
       --tw-outline-style: none;
       outline-style: none;
-    }
-  }
-  .sm\:w-\[22vw\] {
-    @media (width >= 40rem) {
-      width: 22vw;
     }
   }
 }

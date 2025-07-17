@@ -2,24 +2,14 @@ import { getCurrentConditions, getDefaultLocation } from '../js/weatherapi.js';
 import { updateLucideIcon } from '../js/main.js';
 
 class CurrentConditions extends HTMLElement {
-  async connectedCallback() {
-    await this.updateConditions(); // Initial load
-
-    // ⏱ Wait until the start of the next full minute
-    const now = new Date();
-    const msToNextMinute = (60 - now.getSeconds()) * 1000;
-
-    this._syncTimeout = setTimeout(() => {
-      this.updateConditions(); // Sync update
-
-      // 🔁 Continue updating every minute
-      this._interval = setInterval(() => this.updateConditions(), 60000);
-    }, msToNextMinute);
+  connectedCallback() {
+    this.updateConditions(); // Initial load
+    this._onMinuteTick = () => this.updateConditions();
+    window.addEventListener('minute-tick', this._onMinuteTick);
   }
 
   disconnectedCallback() {
-    clearTimeout(this._syncTimeout);
-    clearInterval(this._interval);
+    window.removeEventListener('minute-tick', this._onMinuteTick);
   }
 
   async updateConditions() {
@@ -47,6 +37,7 @@ class CurrentConditions extends HTMLElement {
 
       this.querySelector('.cc--time').childNodes[0].textContent = `${formattedTime} `;
 
+      // Update day/night icon
       const iconName = data.isDaytime ? 'sun' : 'moon';
       const iconEl = this.querySelector('.cc--time-icon');
       if (iconEl) {

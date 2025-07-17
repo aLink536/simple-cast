@@ -15,7 +15,6 @@
         <h1 class="font-semibold">Simple Cast</h1>
     </header>
     <main>
-
         <section class="current-weather-screen container flex flex-col gap-6">
             <current-conditions>
                 <div class="card">
@@ -41,9 +40,10 @@
             </current-conditions>
 
             <hourly-conditions>
-                <div class="overflow-x-auto flex flex-row gap-4 mb-5 pb-5 py-z"></div>
+                <div class="card overflow-x-auto">
+                    <div class="forecast-row flex flex-row gap-4 w-max px-2 py-3"></div>
+                </div>
             </hourly-conditions>
-
 
             <theme-box>
                 <div class="card" style="aspect-ratio: 16/9;">
@@ -53,7 +53,6 @@
 
 
         </section>
-
     </main>
 
     <!-- Popups -->

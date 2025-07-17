@@ -51,12 +51,54 @@ document.addEventListener('click', async (e) => {
 
 
     // Re-trigger the component to fetch new data
+    // Re-trigger the component(s) to fetch new data
     const cc = document.querySelector('current-conditions');
-    if (cc) {
-      cc.connectedCallback();
-    }
+    if (cc) cc.connectedCallback();
+
+    const hc = document.querySelector('hourly-conditions');
+    if (hc) hc.connectedCallback();
+
 
     // Close popup
     closePopup('search');
   }
 });
+
+
+export function mapWeatherToLucideIcon(type, isDaytime) {
+  const map = {
+    CLEAR: isDaytime ? 'sun' : 'moon',
+    CLOUDY: 'cloud',
+    MOSTLY_CLOUDY: 'cloud-sun',
+    PARTLY_CLOUDY: isDaytime ? 'cloud-sun' : 'cloud-moon',
+    FOG: 'cloud-fog',
+    RAIN: 'cloud-rain',
+    CHANCE_RAIN: 'cloud-drizzle',
+    THUNDERSTORM: 'cloud-lightning',
+    SNOW: 'cloud-snow',
+    CHANCE_SNOW: 'snowflake',
+    WIND: 'wind',
+    HAZE: 'align-vertical-space-around', // fallback
+  };
+
+  return map[type] || 'cloud';
+}
+
+
+function startMinuteTicker() {
+  const now = new Date();
+  const msToNextMinute = (60 - now.getSeconds()) * 1000;
+
+  setTimeout(() => {
+    // Fire first tick
+    window.dispatchEvent(new Event('minute-tick'));
+
+    // Then fire every minute
+    setInterval(() => {
+      window.dispatchEvent(new Event('minute-tick'));
+    }, 60000);
+  }, msToNextMinute);
+}
+
+// Start ticker on load
+startMinuteTicker();
