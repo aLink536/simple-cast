@@ -94,6 +94,7 @@ footer a {
 .card{
     background-color: var(--color-accent);
     color: white;
+    border: solid 1px rgb(103, 103, 103);
       @apply p-5 rounded-2xl;
       iframe{
         height: 100%;

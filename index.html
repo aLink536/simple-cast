@@ -11,31 +11,57 @@
 </head>
 
 <body class="bg-primary">
-    <header class="flex p-5 w-full justify-center text-white">
-        <h1 class="font-semibold">Simple Cast</h1>
-    </header>
     <main>
         <section class="current-weather-screen container flex flex-col gap-6">
             <current-conditions>
-                <div class="card">
-                    <span class="cc-country text-xs">United Kingdom</span>
-                    <div class="card-header flex flex-row justify-between items-center">
-                        <h2><span class="cc-location">Location -</span> <span class="cc--temp">Temp</span></h2> <span
-                            class="flex gap-1.5 cc--time">Time: <i class="cc--time-icon" data-lucide="moon"></i></span>
+                <div class="card flex flex-row justify-between items-center mb-5">
+                    <div class="flex flex-col">
+                        <p class="cc-country text-xs">United Kingdom</p>
+                        <p class="cc-location text-2xl">Location</p>
                     </div>
-                    <div class="card-body flex flex-row">
-                        <div class="flex flex-col">
-                            <p class="text-secondary cc--weather">Weather:</p>
-                            <p class="text-secondary cc--feels-like">Feels like: </p>
-                            <p class="text-secondary cc--high-low">High: Low:</p>
-                        </div>
-                        <div class="flex flex-col ml-auto">
-                            <p class="text-secondary cc--wind">Wind:</p>
-                            <p class="text-secondary cc--air-pressure">Air Pressure: </p>
-                            <p class="text-secondary cc--humidity">Humidity: </p>
 
+                    <div class="flex flex-row">
+                        <div class="text-end">
+                            <p class="cc--time text-xs">Time:</p>
+                            <div class="flex flex-row gap-1">
+                                <p class="cc--weather text-2xl">Weather:</p>
+                            </div>
                         </div>
                     </div>
+
+                </div>
+                <div class="text-center text-white">
+                    <div class="card-header flex flex-col justify-between items-center my-10">
+                        <i class="cc--time-icon text-2xl" data-lucide="moon"></i>
+                        <p class="cc--temp text-7xl mt-2">Temp</p>
+                        <div class="flex flex-row align-middle text-center gap-3 mt-2">
+                        </div>
+                    </div>
+
+                    <div class="flex flex-row justify-between gap-5">
+                        <div class="card w-1/2 text-center aspect-square justify-center flex-col flex gap-2 items-center">
+                            <svg class="cc-direction" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide lucide-move-up-icon lucide-move-up">
+                                <path d="M8 6L12 2L16 6" />
+                                <path d="M12 2V22" />
+                            </svg>
+                            <p class=" cc--wind">Wind:</p>
+                        </div>
+                        <div
+                            class="card cc--humidity-card w-1/2 text-center aspect-square justify-center flex-col flex gap-2 items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-droplet-icon lucide-droplet"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg>
+                            <p class=" cc--humidity">Humidity: </p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col mt-5">
+                        <p class="text-secondary cc--feels-like">Feels like: </p>
+                        <p class="text-secondary cc--high-low">High: Low:</p>
+                        <p class="text-secondary cc--air-pressure">Air Pressure: </p>
+                    </div>
+
                 </div>
             </current-conditions>
 
