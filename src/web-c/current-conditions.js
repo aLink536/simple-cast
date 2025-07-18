@@ -65,6 +65,7 @@ class CurrentConditions extends HTMLElement {
       }
 
 
+
       // Rotate the wind direction arrow (cc-direction)
       const directionDegrees = data.wind.direction.degrees; // e.g., 335
       const arrowEl = this.querySelector('.cc-direction');
