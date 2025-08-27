@@ -102,3 +102,110 @@ function startMinuteTicker() {
 
 // Start ticker on load
 startMinuteTicker();
+
+
+// === Dynamic theme by time of day (pastel + accessible) ===
+
+function setTheme(mode) {
+  const root = document.documentElement;
+
+  switch (mode) {
+    case "sunrise": // 5–8 am
+      root.style.setProperty("--color-primary", "#FFF1F2");   // rose-50
+      root.style.setProperty("--color-accent", "#FBCFE8");    // pink-200
+      root.style.setProperty("--color-secondary", "#7C2D12"); // deep brown for readable text
+      root.style.setProperty("--color-white", "#1F2937");     // gray-800 text
+      root.style.setProperty("--color-dark", "#E5E7EB");      // gray-200 border
+      break;
+
+    case "day": // 8 am–5 pm
+      root.style.setProperty("--color-primary", "#ECFEFF");   // cyan-50
+      root.style.setProperty("--color-accent", "#93C5FD");    // blue-300
+      root.style.setProperty("--color-secondary", "#1E3A8A"); // strong indigo for text
+      root.style.setProperty("--color-white", "#0F172A");     // gray-900 text
+      root.style.setProperty("--color-dark", "#CBD5E1");      // slate-300 border
+      break;
+
+    case "sunset": // 5–8 pm
+      root.style.setProperty("--color-primary", "#FFF7ED");   // orange-50
+      root.style.setProperty("--color-accent", "#FDBA74");    // orange-300
+      root.style.setProperty("--color-secondary", "#7C2D12"); // dark orange/brown text
+      root.style.setProperty("--color-white", "#1F2937");     // gray-800 text
+      root.style.setProperty("--color-dark", "#FED7AA");      // orange-200 border
+      break;
+
+    default: // 🌙 night (original dark mode)
+      root.style.setProperty("--color-primary", "#0F1C24");
+      root.style.setProperty("--color-secondary", "#8FB2CC");
+      root.style.setProperty("--color-accent", "#21384A");
+      root.style.setProperty("--color-white", "#FFFFFF");
+      root.style.setProperty("--color-dark", "#172933");
+      break;
+  }
+}
+
+function detectTimeMode(hours) {
+  if (hours >= 5 && hours < 8) return "sunrise";
+  if (hours >= 8 && hours < 17) return "day";
+  if (hours >= 17 && hours < 20) return "sunset";
+  return "night";
+}
+
+function updateThemeFromTime() {
+  const timeEl = document.querySelector(".cc--time");
+  if (!timeEl) return;
+
+  const text = timeEl.textContent || "";
+  const match = text.match(/(\d{1,2}):(\d{2})/);
+  if (!match) return;
+
+  let hours = parseInt(match[1], 10);
+
+  // handle AM/PM if present
+  if (/PM/i.test(text) && hours < 12) hours += 12;
+  if (/AM/i.test(text) && hours === 12) hours = 0;
+
+  setTheme(detectTimeMode(hours));
+}
+
+// 🚀 Run once on page load
+document.addEventListener("DOMContentLoaded", updateThemeFromTime);
+
+// 🔄 Update every minute via ticker
+window.addEventListener("minute-tick", updateThemeFromTime);
+
+// 🕵️ Watch for .cc--time being updated by weather component
+const timeEl = document.querySelector(".cc--time");
+if (timeEl) {
+  const obs = new MutationObserver(updateThemeFromTime);
+  obs.observe(timeEl, { childList: true, characterData: true, subtree: true });
+}
+
+// WEATHER MOOD
+export function applyWeatherMood(weatherType) {
+  const root = document.documentElement;
+
+  switch (weatherType) {
+    case "CLEAR":
+      root.style.setProperty("--theme-filter", "saturate(1.2) brightness(1.05)");
+      break;
+    case "CLOUDY":
+    case "MOSTLY_CLOUDY":
+    case "PARTLY_CLOUDY":
+    case "FOG":
+    case "HAZE":
+      root.style.setProperty("--theme-filter", "saturate(0.8) brightness(0.9)");
+      break;
+    case "RAIN":
+    case "CHANCE_RAIN":
+    case "THUNDERSTORM":
+      root.style.setProperty("--theme-filter", "saturate(0.7) brightness(0.85)");
+      break;
+    case "SNOW":
+    case "CHANCE_SNOW":
+      root.style.setProperty("--theme-filter", "saturate(0.75) brightness(1.1)");
+      break;
+    default:
+      root.style.setProperty("--theme-filter", "none");
+  }
+}

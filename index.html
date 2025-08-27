@@ -62,7 +62,7 @@
                         </div>
                         <div
                             class="card cc-ap-box w-1/2 aspect-square flex flex-col items-center justify-center text-center relative overflow-hidden">
-                            <p class="text-secondary cc--air-pressure z-10">AP: </p>
+                            <p class="cc--air-pressure z-10">AP: </p>
                         </div>
 
                     </div>
@@ -111,8 +111,8 @@
     </pop-up>
     <!-- End Popups -->
 
-    <footer class="flex flex-nowrap flex-row fixed bottom-0 p-5 w-full justify-evenly bg-dark text-secondary">
-        <a class="active"><i data-lucide="sun"></i> Current Weather</a>
+    <footer class="flex flex-nowrap flex-row fixed bottom-0 z-[9999] p-5 w-full justify-evenly bg-dark text-secondary">
+        <a class="active-tab text-white"><i data-lucide="sun"></i> Current Weather</a>
         <a><i data-lucide="calendar-range"></i>Daily Forecast</a>
         <a onclick="openPopup('search')"><i data-lucide="search"></i>Search</a>
     </footer>
@@ -120,6 +120,8 @@
     <script>
         lucide.createIcons();
     </script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </body>
 
 
