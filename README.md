@@ -1,4 +1,4 @@
-# 🌤️ Simple Cast
+# 🌤️ [Simple Cast](https://alink536.github.io/simple-cast/)
 
 **Simple Cast** is a simple, modular weather app built with modern web technologies — designed to provide live weather conditions
 
